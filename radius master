@@ -1,0 +1,18 @@
+#This program calculates the surface area of a sphere
+
+print("What is your radius?")
+
+r = input()
+
+import math
+
+surfaceArea = 4 * (math.pi * r**2 )
+circumference = 2 * ( math.pi * r )
+area = math.pi * r**2
+v = (4*math.pi*(r**3))/3
+
+print("The circumference of a circle with a radius of " + str(r) + " is " + str(circumference))
+print("The area of a circle with a radius of " + str(r) + " is " + str(area))
+print("The volume of a sphere with radius " + str(r) + " is " + str(v))
+print("The surface area of a sphere with radius " + str(r) + " is " + str(surfaceArea))
+
