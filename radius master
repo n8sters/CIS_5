@@ -1,18 +1,24 @@
-#This program calculates the surface area of a sphere
+'''
+This program calculates the circumference and area of a circle, and the 
+surface area and volume of a sphere from a user-given radius.
+'''
 
-print("What is your radius?")
+data = raw_input('Enter a number: ')
+try:
+    r = int(data)
+except ValueError:
+    print "I am afraid %s is not a number" % data
+else:
+    if r > 0:
+        import math
+        surfaceArea = 4 * (math.pi * r**2 )
+        circumference = 2 * ( math.pi * r )
+        area = math.pi * r**2
+        v = (4*math.pi*(r**3))/3
+        print("The circumference of a circle with a radius of " + str(r) + " is " + str(circumference))
+        print("The area of a circle with a radius of " + str(r) + " is " + str(area))
+        print("The volume of a sphere with radius " + str(r) + " is " + str(v))
+        print("The surface area of a sphere with radius " + str(r) + " is " + str(surfaceArea))
 
-r = input()
-
-import math
-
-surfaceArea = 4 * (math.pi * r**2 )
-circumference = 2 * ( math.pi * r )
-area = math.pi * r**2
-v = (4*math.pi*(r**3))/3
-
-print("The circumference of a circle with a radius of " + str(r) + " is " + str(circumference))
-print("The area of a circle with a radius of " + str(r) + " is " + str(area))
-print("The volume of a sphere with radius " + str(r) + " is " + str(v))
-print("The surface area of a sphere with radius " + str(r) + " is " + str(surfaceArea))
-
+    else:
+        print "Please enter a positive integer"
