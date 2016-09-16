@@ -1,4 +1,8 @@
 import random
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setup(12, GPIO.OUT)
 
 the_number = random.randint(1, 100)
 
@@ -9,9 +13,18 @@ for guesses in range(100): #limits the user to 100 guesses
     guess = int(input("Take a guess: "))
 
     if guess > the_number:
+        GPIO.output(12,0)
+        GPIO.output(12,1)
+        GPIO.sleep(3)
+        GPIO.cleanup()
+        
         print("Too low!")
     elif guess < the_number:
         print("Too high")
+        GPIO.output(12,0)
+        GPIO.output(12,1)
+        GPIO.sleep(3)
+        GPIO.cleanup()
     else:
         print("You guessed it! The number was %d" % (the_number))
         print("And it only took you %d tries!\n\n" % (guesses + 1))
