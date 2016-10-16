@@ -2,7 +2,18 @@ import random
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setup(12, GPIO.OUT)
+def light_on(pin time):
+    GPIO.output(pin, GPIO.HIGH)
+    time.sleep(time)
+def light_off(pin, time):
+    GPIO.output(pin, GPIO.LOW)
+    time.sleep(time)
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(11, GPIO.OUT )
+GPIO.setup(13, GPIO.OUT )
+GPIO.setup(15, GPIO.OUT )
 
 the_number = random.randint(1, 100)
 
@@ -13,19 +24,19 @@ for guesses in range(100): #limits the user to 100 guesses
     guess = int(input("Take a guess: "))
 
     if guess > the_number:
-        GPIO.output(12,0)
-        GPIO.output(12,1)
-        GPIO.sleep(3)
-        GPIO.cleanup()
+        light_on(11, 2)
+        light_off(11, .1)
         
         print("Too low!")
     elif guess < the_number:
         print("Too high")
-        GPIO.output(12,0)
-        GPIO.output(12,1)
-        GPIO.sleep(3)
-        GPIO.cleanup()
+        light_on(13, 2)
+        light_off(13, .1)
+        
     else:
+        light_on(15, 2)
+        light_off(15, .1)
+        GPIO.cleanup()
         print("You guessed it! The number was %d" % (the_number))
         print("And it only took you %d tries!\n\n" % (guesses + 1))
         break
