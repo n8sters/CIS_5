@@ -30,7 +30,8 @@ for guesses in range(100): #limits the user to 100 guesses
         print("And it only took you %d tries!\n\n" % (guesses + 1))
         break
 else:
-    print("You failed to guess in time!\n\n")
+
+    print("You had 100 guesses, what happened?!?\n\n") #in case the user is just messing with the program
 
 try:
     input("Press the enter key to exit.")
