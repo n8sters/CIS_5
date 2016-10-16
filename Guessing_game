@@ -11,9 +11,9 @@ def light_off(pin, time):
 
 GPIO.setmode(GPIO.BOARD)
 
+GPIO.setup(7, GPIO.OUT )
 GPIO.setup(11, GPIO.OUT )
 GPIO.setup(13, GPIO.OUT )
-GPIO.setup(15, GPIO.OUT )
 
 the_number = random.randint(1, 100)
 
@@ -24,18 +24,18 @@ for guesses in range(100): #limits the user to 100 guesses
     guess = int(input("Take a guess: "))
 
     if guess > the_number:
-        light_on(11, 2)
-        light_off(11, .1)
+        light_on(7, 2)
+        light_off(7, .1)
         
         print("Too low!")
     elif guess < the_number:
         print("Too high")
-        light_on(13, 2)
-        light_off(13, .1)
+        light_on(11, 2)
+        light_off(11, .1)
         
     else:
-        light_on(15, 2)
-        light_off(15, .1)
+        light_on(13, 2)
+        light_off(13, .1)
         GPIO.cleanup()
         print("You guessed it! The number was %d" % (the_number))
         print("And it only took you %d tries!\n\n" % (guesses + 1))
