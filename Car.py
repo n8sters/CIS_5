@@ -5,14 +5,7 @@ import termios
 
 # init(). Initialises GPIO pins, switches motors and LEDs Off, etc
 def init():
-    global p, q, a, b, pwm, pcfADC, PGType
-    PGType = PGFull
-    # Initialise the PCA9685 PWM device using the default address
-    try:
-        pwm = PWM(0x40, debug = False)
-        pwm.setPWMFreq(60)  # Set frequency to 60 Hz
-    except:
-        PGType = PGLite # No PCA9685 so set to Pi2Go-Lite
+    global p, q, a, b, pwm
 
     #use physical pin numbering
     GPIO.setmode(GPIO.BOARD)
@@ -34,12 +27,6 @@ def init():
     b = GPIO.PWM(R2, 20)
     b.start(0)
 
-    # Initalise the ADC
-    pcfADC = None # ADC object
-    try:
-        pcfADC = sgh_PCF8591P(1) #i2c, 0x48)
-    except:
-        PGType = PGLite
 
 
 # Pins 24, 26 Left Motor
@@ -132,9 +119,6 @@ def cleanup():
     stopServod()
     time.sleep(1)
     GPIO.cleanup()
-
-
-init()
 
 # Main body of code - this detects your key press and changes direction depending on it
 try:
